@@ -2,34 +2,33 @@ package scrabblePackage;
 import java.util.*;
 import java.io.*;
 
-public class ScrabbleGame {
-	static ArrayList<Word> wordList = new ArrayList<Word>();
-	int letterPoints[] = new int[26];
-	Rack rack = new Rack();
-	Square board[][] = new Square[15][15];
+public class Word {
+	static int letterPoints[] = new int[26];
+	String theWord;
+	int[] letterCounts = new int[26];
+	int pointValue;
 	
-	ScrabbleGame() {
-		initBoard();
-		initRow7();
-		initLetterPoints();
+	Word(String wrd) {
+		theWord = wrd;
+		countLetters();
+		computePV();
 	}
+
 	
-	
-	void initBoard() {
-		for (int row = 0; row < board.length; row++) {
-			for (int col = 0; col < board[row].length; col++) {
-				board[row][col] = new Square();
-				board[row][col].row = row; board[row][col].col = col;
-			}
+	void countLetters() {
+		for (int i = 0; i < theWord.length(); i++) {
+			letterCounts[(int)theWord.charAt(i) - 65]++;
 		}
 	}
 	
-	void initRow7() {
-		board[7][3].multiplier = 2;
-		board[7][11].multiplier = 2;
+	void computePV() {
+		for (int i = 0; i < 26; i++) {
+			pointValue += letterPoints[i] * letterCounts[i];
+		}
 	}
 	
-	void initLetterPoints() {
+	
+	static void initLetterPoints() {
 		for (int i = 0; i < letterPoints.length; i++) {
 			if (i == 0 || i == 4 || i == 8 || i == 11 || i == 13 || i == 14 || i == 17 || i == 18 || i == 19 || i == 20) {
 				letterPoints[i] = 1;
@@ -54,4 +53,5 @@ public class ScrabbleGame {
 			}
 		}
 	}
+	
 }
