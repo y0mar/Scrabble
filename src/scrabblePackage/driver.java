@@ -80,7 +80,7 @@ public class driver {
 				System.out.print("\n\n");
 				**/
 				
-				System.out.print("RACK: " + game.rack.letterStr + "\nPLACE WORD ");
+				System.out.print("RACK: " + game.rack.letterStr + " yields " + game.rack.legalWords.size() + " legal words." + "\nPLACE WORD ");
 				System.out.print(solution.word.theWord + " starting at (" + solution.startingSquare.row + ", " +
 							solution.startingSquare.col + ") for " + solution.pointValue + " points.\nElapsed time: " + 
 							elapsedTime + " milliseconds.\n\n");
