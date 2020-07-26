@@ -1,9 +1,7 @@
 package scrabblePackage;
-import java.util.*;
 
 public class Square {
 	
-	int multiplier, row, col;
-	
+	int multiplier = 1, row, col;
 
 }

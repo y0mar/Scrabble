@@ -1,6 +1,5 @@
 package scrabblePackage;
 import java.util.*;
-import java.io.*;
 
 public class Rack {
 	int blanks;
@@ -42,7 +41,6 @@ public class Rack {
 	ArrayList<Word> selectionSort(ArrayList<Word> wordList) {
 		ArrayList<Word> tempList = new ArrayList<Word>(wordList);
 		ArrayList<Word> newList = new ArrayList<Word>();
-		
 		
 		while(!tempList.isEmpty()) {
 			int smallest = 0;

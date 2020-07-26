@@ -1,6 +1,4 @@
 package scrabblePackage;
-import java.util.*;
-import java.io.*;
 
 public class Word {
 	static int letterPoints[] = new int[26];
@@ -25,6 +23,11 @@ public class Word {
 		for (int i = 0; i < 26; i++) {
 			pointValue += letterPoints[i] * letterCounts[i];
 		}
+	}
+	
+	int computePV(char ch, int squareMultiplier) {
+		int points = letterPoints[(int)ch - 65] * squareMultiplier;
+		return points;
 	}
 	
 	

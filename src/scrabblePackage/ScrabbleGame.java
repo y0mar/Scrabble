@@ -1,6 +1,5 @@
 package scrabblePackage;
 import java.util.*;
-import java.io.*;
 
 public class ScrabbleGame {
 	static ArrayList<Word> wordList = new ArrayList<Word>();
@@ -53,5 +52,45 @@ public class ScrabbleGame {
 				letterPoints[i] = 10;
 			}
 		}
+	}
+	
+	/**
+	 * Returns the starting square to achieve highest PV for the given word
+	 * while satisfying the center square requirement
+	 * @param wrd
+	 * @return legal starting Square with highest PV for the word
+	 */
+	Solution highestPVStartSquare(Word wrd) {
+		Solution solution = new Solution();
+		solution.word = wrd;
+		solution.startingSquare.row = 7;
+		solution.startingSquare.col = 7;
+		
+		int pointValue = 0;
+		int highestPV = 0;
+		
+		for (int i = 0; i < wrd.theWord.length(); i++) {
+			for (int j = 0; j < wrd.theWord.length(); j++) {
+				pointValue += wrd.computePV(wrd.theWord.charAt(j),  board[7][7 - i + j].multiplier);
+				if (pointValue > highestPV) {
+					highestPV = pointValue;
+					solution.startingSquare.col = 7 - i;
+				}
+			}
+			pointValue = 0;
+		}
+		solution.pointValue = highestPV;
+		return solution;
+	}
+	
+	Solution solveFirstMove(ArrayList<Word> legalWrds) {
+		Solution bestFirstMove = new Solution();
+		
+		for (int i = 0; i < legalWrds.size(); i++) {
+			if (bestFirstMove.pointValue < this.highestPVStartSquare(legalWrds.get(i)).pointValue) {
+				bestFirstMove = this.highestPVStartSquare(legalWrds.get(i));
+			}
+		}
+		return bestFirstMove;
 	}
 }
