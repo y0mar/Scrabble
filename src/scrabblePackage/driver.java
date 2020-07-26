@@ -57,7 +57,7 @@ public class driver {
 					System.out.println("Rack: " + game.rack.letterStr + " could not spell any words.\n\n");
 					break;
 				}
-				game.rack.legalWords = game.rack.selectionSort(game.rack.legalWords);
+				//game.rack.legalWords = game.rack.selectionSort(game.rack.legalWords); 
 				Solution solution = game.solveFirstMove(game.rack.legalWords);
 				Date end = new Date();
 				long elapsedTime = end.getTime() - start.getTime();
